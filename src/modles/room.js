@@ -4,7 +4,7 @@ const {ROOM_STATUS} =  require("../constants/app.constants");
 
 const roomSchema = new mongoose.Schema({
     roomCode : {
-        trype : String , 
+        type : String , 
         required: true, 
         unique: true
     },
@@ -18,7 +18,7 @@ const roomSchema = new mongoose.Schema({
     },
    tripDates: {
     startDate: String,
-    endDate: STring
+    endDate: String
    }, 
    vibeType:{
     type: String,
@@ -56,7 +56,7 @@ roomStatus : {
     default: ROOM_STATUS.PLANNING
 }
 },{
-    timepStamps: true
+    timepstamps: true
 });
 
 const Room = mongoose.model('Room', roomSchema);
