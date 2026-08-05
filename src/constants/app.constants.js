@@ -4,4 +4,4 @@ const ROOM_STATUS = {
     FINALIZED : 'finalized'
 }
 
-module.exports = ROOM_STATUS; 
+module.exports = {ROOM_STATUS}; 

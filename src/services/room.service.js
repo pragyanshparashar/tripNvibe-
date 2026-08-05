@@ -10,6 +10,7 @@ async function createRoom (roomData) {
         tripDates: roomData.tripDates,
         vibeType: roomData.vibeType,
         budget: roomData.budget, 
+        groupSize: roomData.groupSize,
         participants: [
             {
                 name: roomData.organizerName

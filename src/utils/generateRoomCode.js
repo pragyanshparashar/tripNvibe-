@@ -1,10 +1,11 @@
-const {nanoid} = require('nanoid'); 
+const { customAlphabet } = require("nanoid");
 
+// Restrict characters to uppercase letters & numbers, length 6
+const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6);
 
-function generateRoomCode (){
-    const roomCode = nanoid(6).toUpperCase();
-    return roomCode;            
+function generateRoomCode() {
+  return nanoid();
 }
 
-module.exports = generateRoomCode; 
+module.exports = generateRoomCode;
 
