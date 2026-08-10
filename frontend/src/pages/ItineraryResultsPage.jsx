@@ -6,7 +6,7 @@ import Button from '../components/common/Button'
 
 export default function ItineraryResultsPage() {
   const navigate = useNavigate()
-  const { itineraryOptions, selectedIndex, preferences } = useTrip()
+  const { itineraryOptions, selectedIndices, toggleItinerarySelection, preferences } = useTrip()
 
   if (itineraryOptions.length === 0) {
     return (
@@ -25,23 +25,40 @@ export default function ItineraryResultsPage() {
     )
   }
 
+  const hasSelection = selectedIndices.length > 0
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
+    <div className="mx-auto max-w-6xl px-6 py-16 pb-32">
       <div className="mb-10 text-center">
         <h1 className="font-display text-3xl font-bold text-deep-900 sm:text-4xl">
           Your trip options for {preferences.destination}
         </h1>
         <p className="mt-3 font-body text-deep-500">
           TripnVibe&rsquo;s AI built {itineraryOptions.length} option{itineraryOptions.length > 1 ? 's' : ''} for your group.
-          Tap one to see the full plan.
+          Tap the ✓ to shortlist one or more, or open one to see the full plan.
         </p>
       </div>
 
       <ItineraryGrid
         itineraries={itineraryOptions}
-        selectedIndex={selectedIndex}
+        selectedIndices={selectedIndices}
         onView={(index) => navigate(`/itineraries/${index}`)}
+        onToggleSelect={toggleItinerarySelection}
       />
+
+      {hasSelection && (
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-deep-900/5 bg-white/95 px-6 py-4 backdrop-blur-md">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+            <p className="font-body text-sm font-medium text-deep-700">
+              {selectedIndices.length} {selectedIndices.length > 1 ? 'itineraries' : 'itinerary'} shortlisted
+              {selectedIndices.length > 1 ? ' — your group will vote on these' : ''}
+            </p>
+            <Button variant="primary" onClick={() => navigate('/room/create')}>
+              Continue with {selectedIndices.length} selected →
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

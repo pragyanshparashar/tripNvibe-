@@ -7,7 +7,7 @@ import Button from '../components/common/Button'
 export default function JoinRoomPage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const { setRoom } = useTrip()
+  const { setRoom, setMyName } = useTrip()
 
   const [roomCode, setRoomCode] = useState((searchParams.get('code') || '').toUpperCase())
   const [participantName, setParticipantName] = useState('')
@@ -25,6 +25,7 @@ export default function JoinRoomPage() {
     try {
       const room = await joinRoom(roomCode.trim().toUpperCase(), participantName.trim())
       setRoom(room)
+      setMyName(participantName.trim())
       navigate(`/room/${room.roomCode}`)
     } catch (err) {
       setError(err.message)

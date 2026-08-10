@@ -9,6 +9,7 @@ import ItineraryDetailPage from './pages/ItineraryDetailPage'
 import CreateRoomPage from './pages/CreateRoomPage'
 import JoinRoomPage from './pages/JoinRoomPage'
 import TripRoomPage from './pages/TripRoomPage'
+import PaymentPage from './pages/PaymentPage'
 import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/room/create" element={<CreateRoomPage />} />
           <Route path="/room/join" element={<JoinRoomPage />} />
           <Route path="/room/:roomCode" element={<TripRoomPage />} />
+          <Route path="/room/:roomCode/payment" element={<PaymentPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

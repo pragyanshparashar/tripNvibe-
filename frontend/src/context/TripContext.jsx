@@ -28,17 +28,16 @@ export function TripProvider({ children }) {
 
   const [preferences, setPreferencesState] = useState(saved?.preferences || emptyPreferences)
   const [itineraryOptions, setItineraryOptionsState] = useState(saved?.itineraryOptions || [])
-  const [selectedIndex, setSelectedIndexState] = useState(
-    saved?.selectedIndex ?? null
-  )
+  const [selectedIndices, setSelectedIndicesState] = useState(saved?.selectedIndices || [])
   const [room, setRoomState] = useState(saved?.room || null)
+  const [myName, setMyNameState] = useState(saved?.myName || '')
 
   useEffect(() => {
     sessionStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ preferences, itineraryOptions, selectedIndex, room })
+      JSON.stringify({ preferences, itineraryOptions, selectedIndices, room, myName })
     )
-  }, [preferences, itineraryOptions, selectedIndex, room])
+  }, [preferences, itineraryOptions, selectedIndices, room, myName])
 
   function updatePreferences(partial) {
     setPreferencesState((current) => ({ ...current, ...partial }))
@@ -46,35 +45,47 @@ export function TripProvider({ children }) {
 
   function setItineraryOptions(options) {
     setItineraryOptionsState(options)
-    setSelectedIndexState(null)
+    setSelectedIndicesState([])
   }
 
-  function selectItinerary(index) {
-    setSelectedIndexState(index)
+  function toggleItinerarySelection(index) {
+    setSelectedIndicesState((current) =>
+      current.includes(index)
+        ? current.filter((i) => i !== index)
+        : [...current, index]
+    )
   }
 
   function setRoom(roomDoc) {
     setRoomState(roomDoc)
   }
 
+  function setMyName(name) {
+    setMyNameState(name)
+  }
+
   function resetTrip() {
     setPreferencesState(emptyPreferences)
     setItineraryOptionsState([])
-    setSelectedIndexState(null)
+    setSelectedIndicesState([])
     setRoomState(null)
     sessionStorage.removeItem(STORAGE_KEY)
   }
+
+  const sortedSelectedIndices = [...selectedIndices].sort((a, b) => a - b)
 
   const value = {
     preferences,
     updatePreferences,
     itineraryOptions,
     setItineraryOptions,
-    selectedIndex,
-    selectItinerary,
-    selectedItinerary: selectedIndex !== null ? itineraryOptions[selectedIndex] : null,
+    selectedIndices,
+    toggleItinerarySelection,
+    selectedItineraries: sortedSelectedIndices.map((index) => itineraryOptions[index]),
     room,
     setRoom,
+    myName,
+    setMyName,
     resetTrip,
   }
 
