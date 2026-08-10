@@ -1,7 +1,9 @@
+
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const roomRoutes = require("./routes/room.routes");
+const vibeRoutes = require("./routes/vibe.routes");
 const app = express();
 
 const notFoundMiddleware = require("./middlewares/notFound.middleware");
@@ -18,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/rooms", roomRoutes);
-
+app.use("/api/v1/vibe", vibeRoutes);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 module.exports = app; 

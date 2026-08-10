@@ -8,8 +8,8 @@ return res.status(200).json({
 
 }
 
-function errorResponse(res, message ){
-    return res.status(400).json({
+function errorResponse(res, message, statusCode = 400){
+    return res.status(statusCode).json({
         success: false,
         message
     })

@@ -1,4 +1,4 @@
-const getItineraryPrompt = require("../../prompts/itinerary.prompt");
+const getItineraryPrompt = require("../../prompts/itinerary.prompts");
 
 function buildPrompt(tripDetails) {
   const masterPrompt = getItineraryPrompt();

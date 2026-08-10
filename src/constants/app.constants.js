@@ -4,4 +4,8 @@ const ROOM_STATUS = {
     FINALIZED : 'finalized'
 }
 
-module.exports = {ROOM_STATUS}; 
+const GEMINI = {
+    MODEL : 'gemini-flash-latest'
+}
+
+module.exports = {ROOM_STATUS,GEMINI}; 
