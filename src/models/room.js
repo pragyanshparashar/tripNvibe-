@@ -40,18 +40,35 @@ joinedAt: {
     default: Date.now
 }
 }],
-tripOptions: [{
-    title: String, 
-    totalCost: Number,
-    itinerary: Array
-
-}],
+tripOptions: {
+    type: [Object],
+    default: []
+},
 selectedTrip: {
     type: Object,
     default: null
-}, 
+},
+votes: [{
+    participantName: String,
+    choiceIndex: Number,
+    votedAt: {
+        type: Date,
+        default: Date.now
+    }
+}],
+expenses: [{
+    description: String,
+    category: String,
+    amount: Number,
+    paidBy: String,
+    splitAmong: [String],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+}],
 roomStatus : {
-    type: String, 
+    type: String,
     enum: Object.values(ROOM_STATUS),
     default: ROOM_STATUS.PLANNING
 }
