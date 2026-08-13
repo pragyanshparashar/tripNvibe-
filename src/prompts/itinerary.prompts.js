@@ -1,8 +1,10 @@
+const { GEMINI } = require("../constants/app.constants");
+
 function getItineraryPrompt() {
   return `
 You are an expert travel planner.
 
-Generate 10 different trip itinerary options based on the user's travel details.
+Generate ${GEMINI.TRIP_OPTION_COUNT} different trip itinerary options based on the user's travel details.
 
 Rules:
 

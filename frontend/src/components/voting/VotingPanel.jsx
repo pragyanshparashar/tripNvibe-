@@ -38,9 +38,9 @@ export default function VotingPanel({ room, myName, onVote, onFinalize }) {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-display text-xl font-bold text-navy-900">🗳️ Vote on the trip</h2>
-        <span className="font-body text-sm text-navy-500">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <h2 className="font-display text-lg font-bold text-navy-900 sm:text-xl">🗳️ Vote on the trip</h2>
+        <span className="whitespace-nowrap font-body text-sm text-navy-500">
           {totalVotes} vote{totalVotes === 1 ? '' : 's'} so far
         </span>
       </div>

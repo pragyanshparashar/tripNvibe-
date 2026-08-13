@@ -5,7 +5,7 @@ export default function ShareRoomPanel({ roomCode }) {
   const shareLink = `${window.location.origin}/room/join?code=${roomCode}`
 
   return (
-    <div className="rounded-3xl bg-white p-8 text-center shadow-soft">
+    <div className="rounded-3xl bg-white p-6 text-center shadow-soft sm:p-8">
       <p className="font-body text-sm font-semibold uppercase tracking-wide text-navy-400">
         Room code
       </p>

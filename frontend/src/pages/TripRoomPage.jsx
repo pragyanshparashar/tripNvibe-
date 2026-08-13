@@ -98,7 +98,7 @@ export default function TripRoomPage() {
   const dayWisePlan = Array.isArray(selectedTrip?.dayWisePlan) ? selectedTrip.dayWisePlan : []
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-12">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
       {!(hasDecidedTrip && isPaid) && <RoomHeader room={room} />}
 
       {isVoting && (
@@ -146,10 +146,14 @@ export default function TripRoomPage() {
           )}
 
           <div>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="font-display text-xl font-bold text-navy-900">Expense Tracker</h2>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+              <h2 className="font-display text-lg font-bold text-navy-900 sm:text-xl">Expense Tracker</h2>
               {!showExpenseForm && (
-                <Button variant="outline" onClick={() => setShowExpenseForm(true)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowExpenseForm(true)}
+                  className="whitespace-nowrap"
+                >
                   + Add expense
                 </Button>
               )}
@@ -193,7 +197,7 @@ export default function TripRoomPage() {
       </div>
 
       {hasDecidedTrip && !isPaid && (
-        <div className="mt-8 flex flex-col items-center gap-3 rounded-3xl bg-night p-8 text-center text-cream-50 shadow-soft sm:flex-row sm:justify-between sm:text-left">
+        <div className="mt-8 flex flex-col items-center gap-3 rounded-3xl bg-night p-6 text-center sm:p-8 text-cream-50 shadow-soft sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h3 className="font-display text-lg font-semibold">Pay your share</h3>
             <p className="font-body text-sm text-navy-100">Settle your contribution for this trip.</p>

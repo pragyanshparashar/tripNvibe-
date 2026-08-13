@@ -5,17 +5,65 @@ const ai = new GoogleGenAI({
     apiKey: env.GEMINI_API_KEY
 })
 
+// The SDK surfaces upstream failures as an Error whose message is the raw JSON
+// error body. Pull the HTTP code out so callers can tell a quota problem (429)
+// apart from a bad request or an outage.
+function readErrorCode(error){
+    const match = /"code"\s*:\s*(\d+)/.exec(error.message || "");
+    return match ? Number(match[1]) : null;
+}
+
+async function callModel(model, prompt){
+    const response = await ai.models.generateContent({
+        model,
+        contents: prompt,
+        config: {
+            // Guarantees syntactically valid JSON, so the parser can no longer
+            // fail on stray prose or markdown fences around the response.
+            responseMimeType: 'application/json',
+            maxOutputTokens: GEMINI.MAX_OUTPUT_TOKENS,
+            // Without this a stalled upstream call holds the client's HTTP
+            // connection open forever instead of failing.
+            abortSignal: AbortSignal.timeout(GEMINI.REQUEST_TIMEOUT_MS)
+        }
+    })
+
+    return response.text;
+}
+
 async function generateTripItinerary(prompt){
     try {
-        const response = await ai.models.generateContent({
-            model: GEMINI.MODEL,
-            contents: prompt
-        })
-
-        return response.text;
+        return await callModel(GEMINI.MODEL, prompt);
     } catch (error){
-        console.log('GEMINI ERROR:', error.message);
-        throw error;
+        const code = readErrorCode(error);
+        console.log(`GEMINI ERROR (${GEMINI.MODEL}, code ${code}):`, error.message);
+
+        // A 400 means we sent something the model rejected — retrying on a
+        // different model would fail identically, so surface it immediately.
+        if (code === 400) {
+            error.statusCode = 400;
+            throw error;
+        }
+
+        try {
+            console.log(`GEMINI: retrying on ${GEMINI.FALLBACK_MODEL}`);
+            return await callModel(GEMINI.FALLBACK_MODEL, prompt);
+        } catch (fallbackError){
+            const fallbackCode = readErrorCode(fallbackError);
+            console.log(`GEMINI ERROR (${GEMINI.FALLBACK_MODEL}, code ${fallbackCode}):`, fallbackError.message);
+
+            if (fallbackCode === 429) {
+                fallbackError.statusCode = 429;
+                fallbackError.clientMessage =
+                    "Our AI planner has hit its request limit for now. Please try again in a minute.";
+            } else {
+                fallbackError.statusCode = 502;
+                fallbackError.clientMessage =
+                    "Our AI planner is temporarily unavailable. Please try again.";
+            }
+
+            throw fallbackError;
+        }
     }
 }
 

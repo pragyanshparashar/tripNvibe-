@@ -4,7 +4,7 @@ export default function RoomHeader({ room }) {
   const dateRange = formatDateRange(room.tripDates?.startDate, room.tripDates?.endDate)
 
   return (
-    <div className="rounded-3xl bg-night px-8 py-10 text-center text-cream-50 shadow-lift">
+    <div className="rounded-3xl bg-night px-5 py-8 text-center sm:px-8 sm:py-10 text-cream-50 shadow-lift">
       <p className="font-body text-sm font-semibold uppercase tracking-wide text-navy-200">
         Trip Room
       </p>

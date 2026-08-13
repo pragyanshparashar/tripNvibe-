@@ -14,6 +14,9 @@ export async function generateTrip(preferences) {
     })
     return response.data.data.tripOptions
   } catch (error) {
+    if (error.code === 'ECONNABORTED') {
+      throw new Error('This is taking longer than expected. Please try again.')
+    }
     const message = error.response?.data?.message || FALLBACK_ERROR
     throw new Error(message)
   }

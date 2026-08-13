@@ -47,13 +47,17 @@ export default function ItineraryResultsPage() {
       />
 
       {hasSelection && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-navy-900/5 bg-white/95 px-6 py-4 backdrop-blur-md">
-          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-            <p className="font-body text-sm font-medium text-navy-700">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-navy-900/5 bg-white/95 px-4 py-3 backdrop-blur-md sm:px-6 sm:py-4">
+          <div className="mx-auto flex max-w-6xl flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+            <p className="text-center font-body text-sm font-medium text-navy-700 sm:text-left">
               {selectedIndices.length} {selectedIndices.length > 1 ? 'itineraries' : 'itinerary'} shortlisted
               {selectedIndices.length > 1 ? ' — your group will vote on these' : ''}
             </p>
-            <Button variant="primary" onClick={() => navigate('/room/create')}>
+            <Button
+              variant="primary"
+              onClick={() => navigate('/room/create')}
+              className="w-full shrink-0 sm:w-auto"
+            >
               Continue with {selectedIndices.length} selected →
             </Button>
           </div>
