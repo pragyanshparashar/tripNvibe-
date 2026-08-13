@@ -116,6 +116,18 @@ async function deleteExpense(roomCode, expenseId){
     return room;
 }
 
+async function markPaymentComplete(roomCode){
+    const room = await Room.findOne({roomCode})
+    if(!room){
+        return null;
+    }
+
+    room.paymentComplete = true;
+
+    await room.save();
+    return room;
+}
+
 module.exports = {
     createRoom,
     joinRoom,
@@ -123,5 +135,6 @@ module.exports = {
     castVote,
     finalizeVoting,
     addExpense,
-    deleteExpense
+    deleteExpense,
+    markPaymentComplete
 }

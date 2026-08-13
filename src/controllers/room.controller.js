@@ -130,6 +130,22 @@ async function deleteExpense(req, res, next){
     }
 }
 
+async function completePayment(req, res, next){
+    try{
+        const { roomCode } = req.params;
+
+        const room = await roomService.markPaymentComplete(roomCode)
+
+        if(!room){
+            return errorResponse(res, "Room not found", 404)
+        }
+        broadcastRoomUpdate(roomCode, room);
+        return successResponse(res, "Payment marked as complete", room)
+    }catch(error){
+        next(error)
+    }
+}
+
 module.exports = {
   createRoom,
   joinRoom,
@@ -137,7 +153,8 @@ module.exports = {
   castVote,
   finalizeVoting,
   addExpense,
-  deleteExpense
+  deleteExpense,
+  completePayment
 };
 
  

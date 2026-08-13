@@ -2,7 +2,7 @@ function getItineraryPrompt() {
   return `
 You are an expert travel planner.
 
-Generate 3 different trip itinerary options based on the user's travel details.
+Generate 10 different trip itinerary options based on the user's travel details.
 
 Rules:
 
@@ -19,6 +19,8 @@ Rules:
    - transportation
    - restaurants
    - dayWisePlan
+7. Each activity inside dayWisePlan must be an object with "time" (e.g. "9:00 AM"),
+   "location" (a short place name), and "activity" (what happens there) — not a plain string.
 
 Return JSON in this format:
 
@@ -34,7 +36,13 @@ Return JSON in this format:
       "dayWisePlan": [
         {
           "day": 1,
-          "activities": []
+          "activities": [
+            {
+              "time": "",
+              "location": "",
+              "activity": ""
+            }
+          ]
         }
       ]
     }

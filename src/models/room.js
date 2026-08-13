@@ -71,6 +71,10 @@ roomStatus : {
     type: String,
     enum: Object.values(ROOM_STATUS),
     default: ROOM_STATUS.PLANNING
+},
+paymentComplete: {
+    type: Boolean,
+    default: false
 }
 },{
     timepstamps: true
