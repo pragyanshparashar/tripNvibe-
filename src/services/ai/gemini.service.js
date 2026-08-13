@@ -28,7 +28,18 @@ async function callModel(model, prompt){
         }
     })
 
-    return response.text;
+    const text = response.text;
+
+    // An aborted or truncated call can resolve with empty text instead of
+    // throwing. Left alone that reaches the parser, which reports it as a
+    // malformed AI response and skips the fallback entirely — observed live as
+    // a 502 after 96s. Treat it as a failed attempt so the fallback runs.
+    if (!text || !text.trim()) {
+        const finishReason = response.candidates?.[0]?.finishReason;
+        throw new Error(`Empty response from ${model} (finishReason: ${finishReason})`);
+    }
+
+    return text;
 }
 
 async function generateTripItinerary(prompt){

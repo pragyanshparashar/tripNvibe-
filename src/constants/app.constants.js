@@ -25,9 +25,11 @@ const GEMINI = {
     // 10 options took ~122s, 4 options takes ~27s.
     TRIP_OPTION_COUNT : 4,
 
-    // Hard ceiling on a single generation, so a hung upstream call fails loudly
-    // instead of holding the HTTP connection open indefinitely.
-    REQUEST_TIMEOUT_MS : 90000
+    // Per-attempt ceiling, not a total. Measured live latency for the primary
+    // swings widely (13s, 46s, and one run past 90s), so this is set to give up
+    // on a slow primary early rather than ride it out — the lite fallback
+    // answers in under 10s, making fail-fast-then-retry the faster path.
+    REQUEST_TIMEOUT_MS : 45000
 }
 
 module.exports = {ROOM_STATUS,GEMINI};
