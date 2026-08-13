@@ -1,11 +1,11 @@
 const variants = {
   primary:
-    'bg-sunset text-white shadow-soft hover:shadow-lift hover:-translate-y-0.5 active:translate-y-0',
+    'bg-brand text-white shadow-soft hover:shadow-lift hover:-translate-y-0.5 active:translate-y-0',
   secondary:
-    'bg-deep-800 text-cream-50 hover:bg-deep-700 hover:-translate-y-0.5 active:translate-y-0',
+    'bg-navy-800 text-cream-50 hover:bg-navy-700 hover:-translate-y-0.5 active:translate-y-0',
   outline:
-    'bg-transparent text-deep-800 border-2 border-deep-800/20 hover:border-coral-500 hover:text-coral-600',
-  ghost: 'bg-transparent text-deep-700 hover:bg-deep-900/5',
+    'bg-transparent text-navy-800 border-2 border-navy-800/20 hover:border-teal-500 hover:text-teal-600',
+  ghost: 'bg-transparent text-navy-700 hover:bg-navy-900/5',
 }
 
 const sizes = {

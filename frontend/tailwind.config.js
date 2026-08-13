@@ -8,53 +8,58 @@ export default {
         body: ['Manrope', 'sans-serif'],
       },
       colors: {
-        // Warm sunset primary — the energetic/CTA color
-        coral: {
-          50: '#fff4ed',
-          100: '#ffe4d3',
-          200: '#ffc4a3',
-          300: '#ff9d6b',
-          400: '#ff7a3d',
-          500: '#fb5a1e',
-          600: '#ec4113',
-          700: '#c42f10',
-          800: '#9c2814',
-          900: '#7e2413',
+        // Primary — sampled directly from the TripnVibe logo icon/wordmark (#02B4C2)
+        teal: {
+          50: '#e6fbfc',
+          100: '#c3f3f6',
+          200: '#8fe4ea',
+          300: '#54cfda',
+          400: '#1fb9c6',
+          500: '#02b4c2',
+          600: '#039ba8',
+          700: '#077c87',
+          800: '#0c6068',
+          900: '#0d4a50',
         },
+        // Highlight — warm complementary accent, used sparingly for celebratory moments
         amber: {
           400: '#ffb84d',
           500: '#ffa11f',
         },
-        // Deep teal/indigo secondary — the grounding color
-        deep: {
-          50: '#eef7f7',
-          100: '#d3e9e9',
-          200: '#a3d0d0',
-          300: '#6fb3b3',
-          400: '#3d8f90',
-          500: '#246667',
-          600: '#1c4f52',
-          700: '#173e42',
-          800: '#122f33',
-          900: '#0c1f22',
+        // Secondary — sampled from the logo's mountain silhouette / wordmark (#011e33 / #012035)
+        navy: {
+          50: '#eef3f7',
+          100: '#d2e1ea',
+          200: '#a5c2d3',
+          300: '#759fb8',
+          400: '#4c7998',
+          500: '#325d7c',
+          600: '#20415c',
+          700: '#152e43',
+          800: '#0e2033',
+          900: '#011f34',
         },
         cream: {
-          50: '#fffdf9',
-          100: '#fdf6ec',
-          200: '#f8ecd9',
+          50: '#f8fbfc',
+          100: '#eef5f6',
+          200: '#deebed',
         },
       },
       boxShadow: {
-        soft: '0 2px 8px -2px rgba(23, 62, 66, 0.08), 0 8px 24px -6px rgba(23, 62, 66, 0.08)',
-        lift: '0 8px 16px -4px rgba(23, 62, 66, 0.12), 0 20px 40px -12px rgba(23, 62, 66, 0.16)',
+        soft: '0 2px 8px -2px rgba(1, 31, 52, 0.08), 0 8px 24px -6px rgba(1, 31, 52, 0.08)',
+        lift: '0 8px 16px -4px rgba(1, 31, 52, 0.12), 0 20px 40px -12px rgba(1, 31, 52, 0.16)',
+        glass: '0 8px 32px 0 rgba(1, 31, 52, 0.14)',
       },
       backgroundImage: {
-        sunset: 'linear-gradient(135deg, #ff7a3d 0%, #fb5a1e 55%, #ec4113 100%)',
-        dusk: 'linear-gradient(135deg, #173e42 0%, #0c1f22 100%)',
+        brand: 'linear-gradient(135deg, #1fb9c6 0%, #02b4c2 55%, #039ba8 100%)',
+        night: 'linear-gradient(135deg, #152e43 0%, #011f34 100%)',
       },
       borderRadius: {
         '2xl': '1.25rem',
         '3xl': '1.75rem',
+      },
+      backdropBlur: {
+        xs: '2px',
       },
       keyframes: {
         shimmer: {

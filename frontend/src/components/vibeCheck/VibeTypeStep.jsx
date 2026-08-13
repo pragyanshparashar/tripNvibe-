@@ -19,12 +19,12 @@ export default function VibeTypeStep({ value, onChange }) {
           onClick={() => onChange(vibe.value)}
           className={`flex flex-col items-center gap-2 rounded-2xl border-2 px-4 py-5 transition-all ${
             value === vibe.value
-              ? 'border-coral-500 bg-coral-50 shadow-soft'
-              : 'border-deep-900/10 bg-white hover:border-coral-300'
+              ? 'border-teal-500 bg-teal-50 shadow-soft'
+              : 'border-navy-900/10 bg-white hover:border-teal-300'
           }`}
         >
           <span className="text-3xl">{vibe.emoji}</span>
-          <span className="font-body text-sm font-semibold text-deep-800">{vibe.value}</span>
+          <span className="font-body text-sm font-semibold text-navy-800">{vibe.value}</span>
         </button>
       ))}
     </div>

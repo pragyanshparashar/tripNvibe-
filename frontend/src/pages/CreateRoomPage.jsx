@@ -64,8 +64,8 @@ export default function CreateRoomPage() {
     return (
       <div className="mx-auto max-w-2xl px-6 py-16 text-center">
         <div className="mb-3 text-5xl">🎉</div>
-        <h1 className="font-display text-3xl font-bold text-deep-900">Your room is ready!</h1>
-        <p className="mt-2 font-body text-deep-500">
+        <h1 className="font-display text-3xl font-bold text-navy-900">Your room is ready!</h1>
+        <p className="mt-2 font-body text-navy-500">
           {room.roomStatus === 'voting'
             ? `Share the code below so your friends can join and vote on ${room.destination}.`
             : `Share the code below so your friends can join ${room.destination}.`}
@@ -86,8 +86,8 @@ export default function CreateRoomPage() {
 
   return (
     <div className="mx-auto max-w-xl px-6 py-16 text-center">
-      <h1 className="font-display text-3xl font-bold text-deep-900">Create your trip room</h1>
-      <p className="mt-2 font-body text-deep-500">
+      <h1 className="font-display text-3xl font-bold text-navy-900">Create your trip room</h1>
+      <p className="mt-2 font-body text-navy-500">
         {isShortlist
           ? 'Your friends will vote among these options once they join.'
           : 'Confirm the details below to bring your friends in.'}
@@ -97,34 +97,34 @@ export default function CreateRoomPage() {
         {selectedItineraries.map((itinerary) => (
           <div key={itinerary.title} className="rounded-3xl bg-white p-6 shadow-soft">
             <div className="flex items-start justify-between gap-4">
-              <h2 className="font-display text-lg font-bold text-deep-900">{itinerary.title}</h2>
-              <span className="shrink-0 font-display text-lg font-bold text-coral-600">
+              <h2 className="font-display text-lg font-bold text-navy-900">{itinerary.title}</h2>
+              <span className="shrink-0 font-display text-lg font-bold text-teal-600">
                 {formatCurrency(itinerary.estimatedCost)}
               </span>
             </div>
             {itinerary.summary && (
-              <p className="mt-1 font-body text-sm text-deep-500 line-clamp-2">{itinerary.summary}</p>
+              <p className="mt-1 font-body text-sm text-navy-500 line-clamp-2">{itinerary.summary}</p>
             )}
           </div>
         ))}
 
         <div className="rounded-3xl bg-white p-6 shadow-soft">
-          <dl className="space-y-2 font-body text-sm text-deep-600">
+          <dl className="space-y-2 font-body text-sm text-navy-600">
             <div className="flex justify-between">
               <dt>Destination</dt>
-              <dd className="font-semibold text-deep-900">{preferences.destination}</dd>
+              <dd className="font-semibold text-navy-900">{preferences.destination}</dd>
             </div>
             <div className="flex justify-between">
               <dt>Dates</dt>
-              <dd className="font-semibold text-deep-900">{dateRange}</dd>
+              <dd className="font-semibold text-navy-900">{dateRange}</dd>
             </div>
             <div className="flex justify-between">
               <dt>Group size</dt>
-              <dd className="font-semibold text-deep-900">{preferences.groupSize} people</dd>
+              <dd className="font-semibold text-navy-900">{preferences.groupSize} people</dd>
             </div>
             <div className="flex justify-between">
               <dt>Organizer</dt>
-              <dd className="font-semibold text-deep-900">{preferences.organizerName}</dd>
+              <dd className="font-semibold text-navy-900">{preferences.organizerName}</dd>
             </div>
           </dl>
         </div>

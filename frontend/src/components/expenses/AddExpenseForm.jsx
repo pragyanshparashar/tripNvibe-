@@ -40,11 +40,11 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
 
   return (
     <form onSubmit={handleSubmit} className="rounded-3xl bg-white p-6 shadow-soft">
-      <h3 className="font-display text-lg font-bold text-deep-900">Add an expense</h3>
+      <h3 className="font-display text-lg font-bold text-navy-900">Add an expense</h3>
 
       <div className="mt-4 space-y-4">
         <div>
-          <label htmlFor="expenseDescription" className="mb-1.5 block font-body text-sm font-semibold text-deep-600">
+          <label htmlFor="expenseDescription" className="mb-1.5 block font-body text-sm font-semibold text-navy-600">
             What was it for?
           </label>
           <input
@@ -53,12 +53,12 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
             placeholder="e.g. Hotel deposit"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
-            className="w-full rounded-xl border-2 border-deep-900/10 px-4 py-2.5 font-body text-deep-900 outline-none focus:border-coral-500"
+            className="w-full rounded-xl border-2 border-navy-900/10 px-4 py-2.5 font-body text-navy-900 outline-none focus:border-teal-500"
           />
         </div>
 
         <div>
-          <label htmlFor="expenseAmount" className="mb-1.5 block font-body text-sm font-semibold text-deep-600">
+          <label htmlFor="expenseAmount" className="mb-1.5 block font-body text-sm font-semibold text-navy-600">
             Amount (₹)
           </label>
           <input
@@ -68,12 +68,12 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
             placeholder="1000"
             value={amount}
             onChange={(event) => setAmount(event.target.value)}
-            className="w-full rounded-xl border-2 border-deep-900/10 px-4 py-2.5 font-body text-deep-900 outline-none focus:border-coral-500"
+            className="w-full rounded-xl border-2 border-navy-900/10 px-4 py-2.5 font-body text-navy-900 outline-none focus:border-teal-500"
           />
         </div>
 
         <div>
-          <p className="mb-1.5 font-body text-sm font-semibold text-deep-600">Category</p>
+          <p className="mb-1.5 font-body text-sm font-semibold text-navy-600">Category</p>
           <div className="flex flex-wrap gap-2">
             {categories.map((option) => (
               <button
@@ -82,8 +82,8 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
                 onClick={() => setCategory(option)}
                 className={`rounded-full border-2 px-3 py-1.5 font-body text-sm transition-colors ${
                   category === option
-                    ? 'border-coral-500 bg-coral-50 text-coral-600'
-                    : 'border-deep-900/10 text-deep-500 hover:border-coral-300'
+                    ? 'border-teal-500 bg-teal-50 text-teal-600'
+                    : 'border-navy-900/10 text-navy-500 hover:border-teal-300'
                 }`}
               >
                 {option}
@@ -93,14 +93,14 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
         </div>
 
         <div>
-          <label htmlFor="expensePaidBy" className="mb-1.5 block font-body text-sm font-semibold text-deep-600">
+          <label htmlFor="expensePaidBy" className="mb-1.5 block font-body text-sm font-semibold text-navy-600">
             Paid by
           </label>
           <select
             id="expensePaidBy"
             value={paidBy}
             onChange={(event) => setPaidBy(event.target.value)}
-            className="w-full rounded-xl border-2 border-deep-900/10 px-4 py-2.5 font-body text-deep-900 outline-none focus:border-coral-500"
+            className="w-full rounded-xl border-2 border-navy-900/10 px-4 py-2.5 font-body text-navy-900 outline-none focus:border-teal-500"
           >
             {participants.map((p) => (
               <option key={p.name} value={p.name}>
@@ -111,7 +111,7 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
         </div>
 
         <div>
-          <p className="mb-1.5 font-body text-sm font-semibold text-deep-600">Split among</p>
+          <p className="mb-1.5 font-body text-sm font-semibold text-navy-600">Split among</p>
           <div className="flex flex-wrap gap-2">
             {participants.map((p) => (
               <button
@@ -120,8 +120,8 @@ export default function AddExpenseForm({ participants, onAdd, onClose }) {
                 onClick={() => toggleSplit(p.name)}
                 className={`rounded-full border-2 px-3 py-1.5 font-body text-sm transition-colors ${
                   splitAmong.includes(p.name)
-                    ? 'border-coral-500 bg-coral-50 text-coral-600'
-                    : 'border-deep-900/10 text-deep-500 hover:border-coral-300'
+                    ? 'border-teal-500 bg-teal-50 text-teal-600'
+                    : 'border-navy-900/10 text-navy-500 hover:border-teal-300'
                 }`}
               >
                 {p.name}

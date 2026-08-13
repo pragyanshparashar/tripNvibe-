@@ -4,7 +4,7 @@ export default function BudgetStep({ value, onChange }) {
   return (
     <div>
       <div className="relative">
-        <span className="absolute left-6 top-1/2 -translate-y-1/2 font-display text-xl text-deep-400">
+        <span className="absolute left-6 top-1/2 -translate-y-1/2 font-display text-xl text-navy-400">
           ₹
         </span>
         <input
@@ -15,7 +15,7 @@ export default function BudgetStep({ value, onChange }) {
           placeholder="30000"
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className="w-full rounded-2xl border-2 border-deep-900/10 bg-white py-4 pl-12 pr-6 text-center font-display text-xl text-deep-900 shadow-soft outline-none transition-colors focus:border-coral-500"
+          className="w-full rounded-2xl border-2 border-navy-900/10 bg-white py-4 pl-12 pr-6 text-center font-display text-xl text-navy-900 shadow-soft outline-none transition-colors focus:border-teal-500"
         />
       </div>
       <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -26,8 +26,8 @@ export default function BudgetStep({ value, onChange }) {
             onClick={() => onChange(String(preset))}
             className={`rounded-full border-2 px-4 py-1.5 font-body text-sm font-medium transition-colors ${
               String(value) === String(preset)
-                ? 'border-coral-500 bg-coral-50 text-coral-600'
-                : 'border-deep-900/10 bg-white text-deep-500 hover:border-coral-300'
+                ? 'border-teal-500 bg-teal-50 text-teal-600'
+                : 'border-navy-900/10 bg-white text-navy-500 hover:border-teal-300'
             }`}
           >
             ₹{preset.toLocaleString('en-IN')}

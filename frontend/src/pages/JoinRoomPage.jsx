@@ -38,13 +38,13 @@ export default function JoinRoomPage() {
     <div className="mx-auto max-w-md px-6 py-16">
       <div className="text-center">
         <div className="text-4xl">🔑</div>
-        <h1 className="mt-3 font-display text-3xl font-bold text-deep-900">Join a trip room</h1>
-        <p className="mt-2 font-body text-deep-500">Enter the room code your friend shared with you.</p>
+        <h1 className="mt-3 font-display text-3xl font-bold text-navy-900">Join a trip room</h1>
+        <p className="mt-2 font-body text-navy-500">Enter the room code your friend shared with you.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-5">
         <div>
-          <label htmlFor="roomCode" className="mb-2 block font-body text-sm font-semibold text-deep-600">
+          <label htmlFor="roomCode" className="mb-2 block font-body text-sm font-semibold text-navy-600">
             Room code
           </label>
           <input
@@ -55,12 +55,12 @@ export default function JoinRoomPage() {
             placeholder="ABCD12"
             value={roomCode}
             onChange={(event) => setRoomCode(event.target.value.toUpperCase())}
-            className="w-full rounded-2xl border-2 border-deep-900/10 bg-white px-6 py-4 text-center font-display text-2xl tracking-[0.3em] text-deep-900 shadow-soft outline-none transition-colors focus:border-coral-500"
+            className="w-full rounded-2xl border-2 border-navy-900/10 bg-white px-6 py-4 text-center font-display text-2xl tracking-[0.3em] text-navy-900 shadow-soft outline-none transition-colors focus:border-teal-500"
           />
         </div>
 
         <div>
-          <label htmlFor="participantName" className="mb-2 block font-body text-sm font-semibold text-deep-600">
+          <label htmlFor="participantName" className="mb-2 block font-body text-sm font-semibold text-navy-600">
             Your name
           </label>
           <input
@@ -69,12 +69,12 @@ export default function JoinRoomPage() {
             placeholder="e.g. Rahul"
             value={participantName}
             onChange={(event) => setParticipantName(event.target.value)}
-            className="w-full rounded-2xl border-2 border-deep-900/10 bg-white px-6 py-4 text-center font-display text-lg text-deep-900 shadow-soft outline-none transition-colors focus:border-coral-500"
+            className="w-full rounded-2xl border-2 border-navy-900/10 bg-white px-6 py-4 text-center font-display text-lg text-navy-900 shadow-soft outline-none transition-colors focus:border-teal-500"
           />
         </div>
 
         {error && (
-          <p className="rounded-2xl bg-coral-50 px-4 py-3 text-center font-body text-sm font-medium text-coral-700">
+          <p className="rounded-2xl bg-teal-50 px-4 py-3 text-center font-body text-sm font-medium text-teal-700">
             {error}
           </p>
         )}

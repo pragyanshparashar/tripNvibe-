@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTrip } from '../context/TripContext'
-import TripOverview from '../components/itinerary/TripOverview'
-import DayPlan from '../components/itinerary/DayPlan'
+import ItineraryFullDetail from '../components/itinerary/ItineraryFullDetail'
 import Button from '../components/common/Button'
 import EmptyState from '../components/common/EmptyState'
 
@@ -31,37 +30,25 @@ export default function ItineraryDetailPage() {
   }
 
   const isSelected = selectedIndices.includes(itineraryIndex)
-  const dayWisePlan = Array.isArray(itinerary.dayWisePlan) ? itinerary.dayWisePlan : []
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
       <button
         type="button"
         onClick={() => navigate('/itineraries')}
-        className="mb-6 inline-flex items-center gap-1 font-body text-sm font-semibold text-deep-500 hover:text-coral-600"
+        className="mb-6 inline-flex items-center gap-1 font-body text-sm font-semibold text-navy-500 hover:text-teal-600"
       >
         ← Back to all options
       </button>
 
-      <TripOverview itinerary={itinerary} preferences={preferences} />
+      <ItineraryFullDetail itinerary={itinerary} tripInfo={preferences} />
 
-      {dayWisePlan.length > 0 && (
-        <div className="mt-10">
-          <h2 className="mb-5 font-display text-2xl font-bold text-deep-900">Day-by-day plan</h2>
-          <div className="space-y-5">
-            {dayWisePlan.map((day, dayIndex) => (
-              <DayPlan key={dayIndex} day={day} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="mt-10 flex flex-col items-center gap-3 rounded-3xl bg-white p-8 text-center shadow-soft sm:flex-row sm:justify-between sm:text-left">
+      <div className="glass-strong mt-10 flex flex-col items-center gap-3 p-8 text-center sm:flex-row sm:justify-between sm:text-left">
         <div>
-          <h3 className="font-display text-lg font-semibold text-deep-900">
+          <h3 className="font-display text-lg font-semibold text-navy-900">
             {isSelected ? "This one's on your shortlist" : 'Like this one?'}
           </h3>
-          <p className="font-body text-sm text-deep-500">
+          <p className="font-body text-sm text-navy-500">
             {isSelected
               ? 'Add more options for the group to vote on, or continue to create your room.'
               : 'Add it to your shortlist — pick more than one to let the group vote.'}

@@ -30,10 +30,10 @@ export default function ItineraryResultsPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-16 pb-32">
       <div className="mb-10 text-center">
-        <h1 className="font-display text-3xl font-bold text-deep-900 sm:text-4xl">
+        <h1 className="font-display text-3xl font-bold text-navy-900 sm:text-4xl">
           Your trip options for {preferences.destination}
         </h1>
-        <p className="mt-3 font-body text-deep-500">
+        <p className="mt-3 font-body text-navy-500">
           TripnVibe&rsquo;s AI built {itineraryOptions.length} option{itineraryOptions.length > 1 ? 's' : ''} for your group.
           Tap the ✓ to shortlist one or more, or open one to see the full plan.
         </p>
@@ -47,9 +47,9 @@ export default function ItineraryResultsPage() {
       />
 
       {hasSelection && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-deep-900/5 bg-white/95 px-6 py-4 backdrop-blur-md">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-navy-900/5 bg-white/95 px-6 py-4 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-            <p className="font-body text-sm font-medium text-deep-700">
+            <p className="font-body text-sm font-medium text-navy-700">
               {selectedIndices.length} {selectedIndices.length > 1 ? 'itineraries' : 'itinerary'} shortlisted
               {selectedIndices.length > 1 ? ' — your group will vote on these' : ''}
             </p>

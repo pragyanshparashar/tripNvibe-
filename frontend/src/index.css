@@ -8,7 +8,13 @@
   }
 
   body {
-    @apply bg-cream-50 text-deep-900 font-body antialiased;
+    @apply bg-cream-50 text-navy-900 font-body antialiased;
+    background-image:
+      radial-gradient(640px circle at 12% 8%, rgba(2, 180, 194, 0.14), transparent 60%),
+      radial-gradient(520px circle at 92% 20%, rgba(255, 161, 31, 0.10), transparent 60%),
+      radial-gradient(760px circle at 50% 95%, rgba(1, 31, 52, 0.08), transparent 60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
 
   h1, h2, h3, h4 {
@@ -16,13 +22,45 @@
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-coral-500 ring-offset-2 ring-offset-cream-50;
+    @apply outline-none ring-2 ring-teal-500 ring-offset-2 ring-offset-cream-50;
+  }
+}
+
+@layer components {
+  .glass {
+    border-radius: 1.75rem;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 32px 0 rgba(1, 31, 52, 0.14);
+  }
+
+  /* More opaque — for text-dense surfaces where AA contrast matters more than transparency */
+  .glass-strong {
+    border-radius: 1.75rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 0 8px 32px 0 rgba(1, 31, 52, 0.14);
+  }
+
+  /* Dark glass — for panels that sit on the navy end of the palette */
+  .glass-dark {
+    border-radius: 1.75rem;
+    background: rgba(1, 31, 52, 0.6);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 8px 32px 0 rgba(1, 31, 52, 0.3);
+    color: #f8fbfc;
   }
 }
 
 @layer utilities {
   .shimmer-bg {
-    background: linear-gradient(90deg, #f8ecd9 0px, #fff8ef 40px, #f8ecd9 80px);
+    background: linear-gradient(90deg, #deebed 0px, #f8fbfc 40px, #deebed 80px);
     background-size: 800px 100%;
   }
 }

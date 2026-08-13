@@ -1,5 +1,5 @@
 const avatarColors = [
-  'bg-coral-500', 'bg-deep-600', 'bg-amber-500', 'bg-deep-400', 'bg-coral-600',
+  'bg-teal-500', 'bg-navy-600', 'bg-amber-500', 'bg-navy-400', 'bg-teal-600',
 ]
 
 function initials(name) {
@@ -20,9 +20,9 @@ export default function ParticipantList({ participants, organizerName }) {
             {initials(participant.name)}
           </span>
           <div>
-            <p className="font-body text-sm font-semibold text-deep-900">{participant.name}</p>
+            <p className="font-body text-sm font-semibold text-navy-900">{participant.name}</p>
             {participant.name === organizerName && (
-              <p className="font-body text-xs text-coral-500">Organizer</p>
+              <p className="font-body text-xs text-teal-500">Organizer</p>
             )}
           </div>
         </li>

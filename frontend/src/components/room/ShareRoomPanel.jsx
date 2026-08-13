@@ -6,7 +6,7 @@ export default function ShareRoomPanel({ roomCode }) {
 
   return (
     <div className="rounded-3xl bg-white p-8 text-center shadow-soft">
-      <p className="font-body text-sm font-semibold uppercase tracking-wide text-deep-400">
+      <p className="font-body text-sm font-semibold uppercase tracking-wide text-navy-400">
         Room code
       </p>
       <div className="mt-3 flex justify-center">
@@ -18,7 +18,7 @@ export default function ShareRoomPanel({ roomCode }) {
         <CopyButton value={shareLink} label="Copy invite link" />
       </div>
 
-      <p className="mt-4 break-all font-body text-xs text-deep-400">{shareLink}</p>
+      <p className="mt-4 break-all font-body text-xs text-navy-400">{shareLink}</p>
     </div>
   )
 }

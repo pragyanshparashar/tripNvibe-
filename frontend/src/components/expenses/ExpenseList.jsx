@@ -22,14 +22,14 @@ export default function ExpenseList({ expenses, onDelete }) {
           <div className="flex items-center gap-3">
             <span className="text-xl">{categoryEmoji[expense.category] || '💸'}</span>
             <div>
-              <p className="font-body text-sm font-semibold text-deep-900">{expense.description}</p>
-              <p className="font-body text-xs text-deep-400">
+              <p className="font-body text-sm font-semibold text-navy-900">{expense.description}</p>
+              <p className="font-body text-xs text-navy-400">
                 Paid by {expense.paidBy} &middot; split {expense.splitAmong?.length || 0} ways
               </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-display text-sm font-bold text-deep-900">
+            <span className="font-display text-sm font-bold text-navy-900">
               {formatCurrency(expense.amount)}
             </span>
             {onDelete && (
@@ -37,7 +37,7 @@ export default function ExpenseList({ expenses, onDelete }) {
                 type="button"
                 onClick={() => onDelete(expense._id)}
                 aria-label="Delete expense"
-                className="text-deep-300 hover:text-coral-600"
+                className="text-navy-300 hover:text-teal-600"
               >
                 ✕
               </button>

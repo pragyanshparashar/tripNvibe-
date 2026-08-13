@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import VoteOptionCard from './VoteOptionCard'
 import FinalizeVotingControl from './FinalizeVotingControl'
+import Modal from '../common/Modal'
+import ItineraryFullDetail from '../itinerary/ItineraryFullDetail'
 
 export default function VotingPanel({ room, myName, onVote, onFinalize }) {
   const [isVoting, setIsVoting] = useState(false)
   const [isFinalizing, setIsFinalizing] = useState(false)
+  const [detailIndex, setDetailIndex] = useState(null)
 
   const tripOptions = room.tripOptions || []
   const votes = room.votes || []
@@ -36,8 +39,8 @@ export default function VotingPanel({ room, myName, onVote, onFinalize }) {
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-display text-xl font-bold text-deep-900">🗳️ Vote on the trip</h2>
-        <span className="font-body text-sm text-deep-500">
+        <h2 className="font-display text-xl font-bold text-navy-900">🗳️ Vote on the trip</h2>
+        <span className="font-body text-sm text-navy-500">
           {totalVotes} vote{totalVotes === 1 ? '' : 's'} so far
         </span>
       </div>
@@ -52,11 +55,12 @@ export default function VotingPanel({ room, myName, onVote, onFinalize }) {
             totalVotes={totalVotes}
             isMyVote={myVote?.choiceIndex === index}
             onVote={handleVote}
+            onViewDetail={() => setDetailIndex(index)}
           />
         ))}
       </div>
 
-      {isVoting && <p className="mt-3 text-center font-body text-sm text-deep-400">Casting your vote…</p>}
+      {isVoting && <p className="mt-3 text-center font-body text-sm text-navy-400">Casting your vote…</p>}
 
       {isOrganizer && tripOptions.length > 0 && (
         <div className="mt-6">
@@ -68,6 +72,14 @@ export default function VotingPanel({ room, myName, onVote, onFinalize }) {
           />
         </div>
       )}
+
+      <Modal isOpen={detailIndex !== null} onClose={() => setDetailIndex(null)}>
+        {detailIndex !== null && (
+          <div className="p-6 sm:p-8">
+            <ItineraryFullDetail itinerary={tripOptions[detailIndex]} tripInfo={room} enablePhotos />
+          </div>
+        )}
+      </Modal>
     </div>
   )
 }

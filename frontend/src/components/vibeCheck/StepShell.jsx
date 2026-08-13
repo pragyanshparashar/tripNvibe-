@@ -18,8 +18,8 @@ export default function StepShell({
       <ProgressBar step={step} totalSteps={totalSteps} />
 
       <div className="animate-fadeUp text-center">
-        <h1 className="font-display text-3xl font-bold text-deep-900 sm:text-4xl">{title}</h1>
-        {subtitle && <p className="mt-3 font-body text-deep-500">{subtitle}</p>}
+        <h1 className="font-display text-3xl font-bold text-navy-900 sm:text-4xl">{title}</h1>
+        {subtitle && <p className="mt-3 font-body text-navy-500">{subtitle}</p>}
 
         <div className="mt-10">{children}</div>
 

@@ -11,7 +11,11 @@ import Button from '../components/common/Button'
 import RoomHeader from '../components/room/RoomHeader'
 import ParticipantList from '../components/room/ParticipantList'
 import ShareRoomPanel from '../components/room/ShareRoomPanel'
+import HeroSummaryCard from '../components/room/HeroSummaryCard'
+import LogisticsCard from '../components/room/LogisticsCard'
+import DummyMapCard from '../components/room/DummyMapCard'
 import VotingPanel from '../components/voting/VotingPanel'
+import DayPlan from '../components/itinerary/DayPlan'
 import AddExpenseForm from '../components/expenses/AddExpenseForm'
 import ExpenseList from '../components/expenses/ExpenseList'
 import BalancesSummary from '../components/expenses/BalancesSummary'
@@ -87,12 +91,15 @@ export default function TripRoomPage() {
   }
 
   const selectedTrip = room.selectedTrip
-  const expenses = room.expenses || []
   const isVoting = room.roomStatus === 'voting'
+  const hasDecidedTrip = Boolean(selectedTrip) && !isVoting
+  const isPaid = Boolean(room.paymentComplete)
+  const expenses = room.expenses || []
+  const dayWisePlan = Array.isArray(selectedTrip?.dayWisePlan) ? selectedTrip.dayWisePlan : []
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
-      <RoomHeader room={room} />
+      {!(hasDecidedTrip && isPaid) && <RoomHeader room={room} />}
 
       {isVoting && (
         <div className="mt-8">
@@ -100,25 +107,82 @@ export default function TripRoomPage() {
         </div>
       )}
 
-      {selectedTrip && !isVoting && (
-        <div className="mt-8 rounded-3xl bg-white p-8 shadow-soft">
-          <p className="font-body text-xs font-semibold uppercase tracking-wide text-deep-400">
+      {hasDecidedTrip && !isPaid && (
+        <div className="glass-strong mt-8 p-8">
+          <p className="font-body text-xs font-semibold uppercase tracking-wide text-navy-400">
             {room.roomStatus === 'finalized' ? 'Winning itinerary' : 'Selected itinerary'}
           </p>
-          <h2 className="mt-1 font-display text-xl font-bold text-deep-900">{selectedTrip.title}</h2>
+          <h2 className="mt-1 font-display text-xl font-bold text-navy-900">{selectedTrip.title}</h2>
           {selectedTrip.summary && (
-            <p className="mt-2 font-body text-sm text-deep-600">{selectedTrip.summary}</p>
+            <p className="mt-2 font-body text-sm text-navy-600">{selectedTrip.summary}</p>
           )}
           {typeof selectedTrip.estimatedCost === 'number' && (
-            <p className="mt-3 font-display text-lg font-bold text-coral-600">
+            <p className="mt-3 font-display text-lg font-bold text-teal-600">
               {formatCurrency(selectedTrip.estimatedCost)}
             </p>
           )}
         </div>
       )}
 
+      {hasDecidedTrip && isPaid && (
+        <div className="mt-8 space-y-8">
+          <HeroSummaryCard room={room} />
+
+          {dayWisePlan.length > 0 && (
+            <div>
+              <h2 className="mb-4 font-display text-xl font-bold text-navy-900">Day-by-Day</h2>
+              <div className="space-y-4">
+                {dayWisePlan.map((day, index) => (
+                  <DayPlan
+                    key={index}
+                    day={day}
+                    destination={room.destination}
+                    collapsible
+                    defaultExpanded={index === 0}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="font-display text-xl font-bold text-navy-900">Expense Tracker</h2>
+              {!showExpenseForm && (
+                <Button variant="outline" onClick={() => setShowExpenseForm(true)}>
+                  + Add expense
+                </Button>
+              )}
+            </div>
+
+            {showExpenseForm && (
+              <div className="mb-4">
+                <AddExpenseForm
+                  participants={room.participants || []}
+                  onAdd={handleAddExpense}
+                  onClose={() => setShowExpenseForm(false)}
+                />
+              </div>
+            )}
+
+            {expenses.length > 0 ? (
+              <div className="space-y-4">
+                <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} />
+                <BalancesSummary expenses={expenses} participants={room.participants || []} />
+              </div>
+            ) : (
+              !showExpenseForm && <EmptyState icon="🧾" title="No expenses yet" message="Add one to start splitting costs." />
+            )}
+          </div>
+
+          <LogisticsCard selectedTrip={selectedTrip} />
+
+          <DummyMapCard selectedTrip={selectedTrip} />
+        </div>
+      )}
+
       <div className="mt-8">
-        <h2 className="mb-4 font-display text-xl font-bold text-deep-900">
+        <h2 className="mb-4 font-display text-xl font-bold text-navy-900">
           Participants ({room.participants?.length || 0})
         </h2>
         {room.participants?.length > 0 ? (
@@ -128,45 +192,17 @@ export default function TripRoomPage() {
         )}
       </div>
 
-      <div className="mt-8">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-display text-xl font-bold text-deep-900">Trip Expenses</h2>
-          {!showExpenseForm && (
-            <Button variant="outline" onClick={() => setShowExpenseForm(true)}>
-              + Add expense
-            </Button>
-          )}
-        </div>
-
-        {showExpenseForm && (
-          <div className="mb-4">
-            <AddExpenseForm
-              participants={room.participants || []}
-              onAdd={handleAddExpense}
-              onClose={() => setShowExpenseForm(false)}
-            />
+      {hasDecidedTrip && !isPaid && (
+        <div className="mt-8 flex flex-col items-center gap-3 rounded-3xl bg-night p-8 text-center text-cream-50 shadow-soft sm:flex-row sm:justify-between sm:text-left">
+          <div>
+            <h3 className="font-display text-lg font-semibold">Pay your share</h3>
+            <p className="font-body text-sm text-navy-100">Settle your contribution for this trip.</p>
           </div>
-        )}
-
-        {expenses.length > 0 ? (
-          <div className="space-y-4">
-            <ExpenseList expenses={expenses} onDelete={handleDeleteExpense} />
-            <BalancesSummary expenses={expenses} participants={room.participants || []} />
-          </div>
-        ) : (
-          !showExpenseForm && <EmptyState icon="🧾" title="No expenses yet" message="Add one to start splitting costs." />
-        )}
-      </div>
-
-      <div className="mt-8 flex flex-col items-center gap-3 rounded-3xl bg-dusk p-8 text-center text-cream-50 shadow-soft sm:flex-row sm:justify-between sm:text-left">
-        <div>
-          <h3 className="font-display text-lg font-semibold">Pay your share</h3>
-          <p className="font-body text-sm text-deep-100">Settle your contribution for this trip.</p>
+          <Button as={Link} to={`/room/${roomCode}/payment`} variant="primary">
+            Pay your share →
+          </Button>
         </div>
-        <Button as={Link} to={`/room/${roomCode}/payment`} variant="primary">
-          Pay your share →
-        </Button>
-      </div>
+      )}
 
       <div className="mt-8">
         <ShareRoomPanel roomCode={room.roomCode} />

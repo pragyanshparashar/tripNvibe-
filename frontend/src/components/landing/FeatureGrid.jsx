@@ -25,20 +25,20 @@ export default function FeatureGrid() {
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-center font-display text-3xl font-bold text-deep-900 sm:text-4xl">
+        <h2 className="text-center font-display text-3xl font-bold text-navy-900 sm:text-4xl">
           Built for planning trips with people
         </h2>
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-3xl bg-white p-8 shadow-soft transition-shadow hover:shadow-lift"
+              className="glass-strong p-8 transition-shadow hover:shadow-lift"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cream-200 text-2xl">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-2xl">
                 {feature.emoji}
               </div>
-              <h3 className="mt-5 font-display text-lg font-semibold text-deep-900">{feature.title}</h3>
-              <p className="mt-2 font-body text-sm text-deep-500">{feature.description}</p>
+              <h3 className="mt-5 font-display text-lg font-semibold text-navy-900">{feature.title}</h3>
+              <p className="mt-2 font-body text-sm text-navy-500">{feature.description}</p>
             </div>
           ))}
         </div>

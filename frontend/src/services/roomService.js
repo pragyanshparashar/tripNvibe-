@@ -38,3 +38,7 @@ export function addExpense(roomCode, expenseData) {
 export function deleteExpense(roomCode, expenseId) {
   return unwrap(api.delete(`/rooms/${roomCode}/expenses/${expenseId}`))
 }
+
+export function completePayment(roomCode) {
+  return unwrap(api.post(`/rooms/${roomCode}/complete-payment`))
+}
